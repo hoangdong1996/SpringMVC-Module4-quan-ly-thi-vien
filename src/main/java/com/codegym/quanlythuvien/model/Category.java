@@ -2,6 +2,7 @@ package com.codegym.quanlythuvien.model;
 
 import javax.persistence.*;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -15,13 +16,13 @@ public class Category {
     @Column(name = "catagory_name")
     private String name;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private Book book;
+    @OneToMany(targetEntity = Book.class, fetch = FetchType.EAGER)
+    private List<Book> book;
 
     public Category() {
     }
 
-    public Category(String name) {
+    public Category(String name){
         this.name = name;
     }
 
@@ -41,11 +42,11 @@ public class Category {
         this.name = name;
     }
 
-    public Book getBook() {
+    public List<Book> getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(List<Book> book) {
         this.book = book;
     }
 }

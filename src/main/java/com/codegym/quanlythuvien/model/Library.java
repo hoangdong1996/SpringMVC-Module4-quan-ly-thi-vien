@@ -1,6 +1,9 @@
 package com.codegym.quanlythuvien.model;
 
+import com.codegym.quanlythuvien.model.BookInLibrary.BookLibrary;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -17,29 +20,30 @@ public class Library {
     @Column(name = "library_info")
     private String info;
 
-    @OneToMany(targetEntity = Librarian.class, fetch = FetchType.EAGER)
-    private List<Librarian> librarians;
+//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinTable(name = "book_in_library",
+//            joinColumns = @JoinColumn(name = "book_id"),
+//            inverseJoinColumns = @JoinColumn(name = "library_id"))
+//    private List<Book> books;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "book_in_library",
-            joinColumns = @JoinColumn(name = "ISBN", referencedColumnName = "ISBN"),
-            inverseJoinColumns = @JoinColumn(name = "library_id", referencedColumnName = "library_id"))
-    private List<Book> books;
+//    @OneToMany(mappedBy = "libraries")
+//    private List<BookLibrary> bookLibraries;
 
-    public Library(){}
+    public Library() {
+    }
 
-    public Library(String name, String info){
+    public Library(String name, String info) {
         this.name = name;
         this.info = info;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
+//    public List<Book> getBooks() {
+//        return books;
+//    }
+//
+//    public void setBooks(List<Book> books) {
+//        this.books = books;
+//    }
 
     public Long getId() {
         return id;
@@ -65,11 +69,4 @@ public class Library {
         this.info = info;
     }
 
-    public List<Librarian> getLibrarians() {
-        return librarians;
-    }
-
-    public void setLibrarians(List<Librarian> librarians) {
-        this.librarians = librarians;
-    }
 }
