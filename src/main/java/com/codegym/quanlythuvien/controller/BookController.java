@@ -2,8 +2,10 @@ package com.codegym.quanlythuvien.controller;
 
 import com.codegym.quanlythuvien.model.Book;
 import com.codegym.quanlythuvien.model.Category;
+import com.codegym.quanlythuvien.model.Library;
 import com.codegym.quanlythuvien.service.BookService;
 import com.codegym.quanlythuvien.service.CategoryService;
+import com.codegym.quanlythuvien.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,9 @@ public class BookController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private LibraryService libraryService;
 
     @RequestMapping("/books")
     public String listBook(Model model) {
@@ -59,5 +64,9 @@ public class BookController {
     @ModelAttribute("categories")
     public List<Category> categories() {
         return categoryService.findAll();
+    }
+    @ModelAttribute("libraries")
+    public List<Library> libraries(){
+        return libraryService.findAll();
     }
 }

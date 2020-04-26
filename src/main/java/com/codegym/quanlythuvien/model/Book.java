@@ -1,7 +1,5 @@
 package com.codegym.quanlythuvien.model;
 
-import com.codegym.quanlythuvien.model.BookInLibrary.BookLibrary;
-
 import javax.persistence.*;
 import javax.persistence.Id;
 import java.util.List;
@@ -31,11 +29,15 @@ public class Book {
     @JoinColumn(name = "catagory_id")
     private Category category;
 
-//    @OneToMany(mappedBy = "books")
-//    private List<BookLibrary> bookLibraries ;
+    @ManyToOne
+    @JoinColumn(name = "library_id")
+    private Library library;
 
-    public Book() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
+
+    public Book(){}
 
     public Book(String isbn, String name, String author, String status) {
         this.isbn = isbn;
@@ -90,5 +92,20 @@ public class Book {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

@@ -1,7 +1,9 @@
-//package com.codegym.quanlythuvien.repository;
-//
-//import org.springframework.stereotype.Repository;
-//
-//@Repository
-//public interface StudentRepository {
-//}
+package com.codegym.quanlythuvien.repository;
+
+import com.codegym.quanlythuvien.model.Student;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface StudentRepository extends CrudRepository<Student, Long> {
+}

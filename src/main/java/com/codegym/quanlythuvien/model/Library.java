@@ -1,10 +1,12 @@
 package com.codegym.quanlythuvien.model;
 
-import com.codegym.quanlythuvien.model.BookInLibrary.BookLibrary;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "libraries")
@@ -20,14 +22,8 @@ public class Library {
     @Column(name = "library_info")
     private String info;
 
-//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinTable(name = "book_in_library",
-//            joinColumns = @JoinColumn(name = "book_id"),
-//            inverseJoinColumns = @JoinColumn(name = "library_id"))
-//    private List<Book> books;
-
-//    @OneToMany(mappedBy = "libraries")
-//    private List<BookLibrary> bookLibraries;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private Set<Book> books = new HashSet<>();
 
     public Library() {
     }
@@ -37,13 +33,13 @@ public class Library {
         this.info = info;
     }
 
-//    public List<Book> getBooks() {
-//        return books;
-//    }
-//
-//    public void setBooks(List<Book> books) {
-//        this.books = books;
-//    }
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
 
     public Long getId() {
         return id;
