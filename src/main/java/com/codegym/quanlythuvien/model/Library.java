@@ -25,6 +25,9 @@ public class Library {
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
     private Set<Book> books = new HashSet<>();
 
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private Set<Librarian> librarians = new HashSet<>();
+
     public Library() {
     }
 
@@ -39,6 +42,14 @@ public class Library {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    public Set<Librarian> getLibrarians() {
+        return librarians;
+    }
+
+    public void setLibrarians(Set<Librarian> librarians) {
+        this.librarians = librarians;
     }
 
     public Long getId() {

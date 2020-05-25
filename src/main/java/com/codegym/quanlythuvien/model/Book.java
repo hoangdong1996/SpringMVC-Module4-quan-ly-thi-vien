@@ -2,6 +2,7 @@ package com.codegym.quanlythuvien.model;
 
 import javax.persistence.*;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -25,6 +26,12 @@ public class Book {
     @Column(name = "status")
     private String status;
 
+    @Column(name = "borrow_date")
+    private String borrowDate;
+
+    @Column(name = "return_date")
+    private String returnDate;
+
     @ManyToOne
     @JoinColumn(name = "catagory_id")
     private Category category;
@@ -37,13 +44,16 @@ public class Book {
     @JoinColumn(name = "student_id")
     private Student student;
 
-    public Book(){}
+    public Book() {
+    }
 
-    public Book(String isbn, String name, String author, String status) {
+    public Book(String isbn, String name, String author, String status, String borrowDate, String returnDate) {
         this.isbn = isbn;
         this.name = name;
         this.author = author;
         this.status = status;
+        this.borrowDate = borrowDate;
+        this.returnDate = returnDate;
     }
 
     public Long getId() {
@@ -86,6 +96,37 @@ public class Book {
         this.status = status;
     }
 
+    public String getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(String borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public String getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(String returnDate) {
+        this.returnDate = returnDate;
+    }
+//    public LocalDate getBorrowDate() {
+//        return borrowDate;
+//    }
+//
+//    public void setBorrowDate(LocalDate borrowDate) {
+//        this.borrowDate = borrowDate;
+//    }
+//
+//    public LocalDate getReturnDate() {
+//        return returnDate;
+//    }
+//
+//    public void setReturnDate(LocalDate returnDate) {
+//        this.returnDate = returnDate;
+//    }
+
     public Category getCategory() {
         return category;
     }
@@ -93,6 +134,7 @@ public class Book {
     public void setCategory(Category category) {
         this.category = category;
     }
+
     public Library getLibrary() {
         return library;
     }

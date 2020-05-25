@@ -24,7 +24,7 @@ public class CategoryFormatter implements Formatter<Optional<Category>> {
 
     @Override
     public String print(Optional<Category> object, Locale locale) {
-        return "[" + object.get().getId() + ", " +object.get().getName() + "]";
+        return "[" + object.get().getId() + ", " + object.get().getName() + "]";
     }
 
 }

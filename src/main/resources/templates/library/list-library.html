@@ -29,6 +29,7 @@
                                 <th>Info</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
+                                <th>Views</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -43,6 +44,12 @@
                                 </td>
                                 <td>
                                     <a th:href="@{/delete-library/{id}(id=${li.id})}"
+                                       class="btn btn-primary">
+                                        <i class="fas fa-user-times ml-2"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/views-library/{id}(id=${li.id})}"
                                        class="btn btn-primary">
                                         <i class="fas fa-user-times ml-2"></i>
                                     </a>

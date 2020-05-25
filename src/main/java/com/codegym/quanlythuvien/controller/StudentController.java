@@ -19,19 +19,20 @@ public class StudentController {
     StudentService studentService;
 
     @RequestMapping("/students")
-    public String listStudent(Model model){
+    public String listStudent(Model model) {
         List<Student> students = studentService.findAll();
         model.addAttribute("students", students);
         return "student/list-student";
     }
+
     @RequestMapping(value = "/add-student")
-    public String addStudent(Model model){
+    public String addStudent(Model model) {
         model.addAttribute("student", new Student());
         return "student/add-student";
     }
 
     @RequestMapping(value = "/save-student", method = RequestMethod.POST)
-    public String saveStudent(Student student){
+    public String saveStudent(Student student) {
         studentService.save(student);
         return "redirect:";
     }

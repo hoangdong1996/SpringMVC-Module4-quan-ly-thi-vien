@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<div th:replace="fragment/layout :: navbar"> </div>
+<div th:replace="fragment/layout :: navbar"></div>
 <div class="container my-2">
     <div class="card">
         <div class="card-body">
@@ -30,7 +30,7 @@
                                 <th>Name</th>
                                 <th>Author</th>
                                 <th>Status</th>
-<!--                                <th>Category</th>-->
+                                <!--                                <th>Category</th>-->
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -41,7 +41,7 @@
                                 <td th:text="${book.name}"></td>
                                 <td th:text="${book.author}"></td>
                                 <td th:text="${book.status}"></td>
-<!--                                <td th:text="${book.category}"></td>-->
+                                <!--                                <td th:text="${book.category}"></td>-->
                                 <td>
                                     <a th:href="@{/edit-book/{id}(id=${book.id})}"
                                        class="btn btn-primary">

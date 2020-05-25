@@ -7,6 +7,7 @@ import com.codegym.quanlythuvien.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,22 @@ public class BookServiceImpl implements BookService {
     public void remove(Long id) {
         bookRepository.deleteById(id);
     }
+
+    @Override
+    public List<Book> findAllByLibrary(Optional<Library> library) {
+        return bookRepository.findAllByLibrary(library);
+    }
+
+    @Override
+    public List<Book> findAllByBorrowDateNotNull() {
+        return bookRepository.findAllByBorrowDateNotNull();
+    }
+
+    @Override
+    public Long countBook() {
+        return bookRepository.count();
+    }
+
 
 //    @Override
 //    public List<Book> findAllByLibraries(Library library) {

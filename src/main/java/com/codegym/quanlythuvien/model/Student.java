@@ -28,7 +28,7 @@ public class Student {
     public Student() {
     }
 
-    public  Student(String name,String classroom, String school){
+    public Student(String name, String classroom, String school) {
         this.name = name;
         this.classroom = classroom;
         this.school = school;

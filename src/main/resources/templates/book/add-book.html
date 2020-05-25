@@ -19,33 +19,33 @@
                 <form action="#" th:action="@{/save-book}" th:object="${book}" method="post">
                     <div class="row">
                         <div class="form-group col-md-8">
-                            <label  class="col-form-label">ISBN</label>
-                            <input type="text" th:field="*{isbn}" class="form-control" placeholder="ISBN" />
+                            <label class="col-form-label">ISBN</label>
+                            <input type="text" th:field="*{isbn}" class="form-control" placeholder="ISBN"/>
                         </div>
                         <div class="form-group col-md-8">
                             <label class="col-form-label">Name</label>
-                            <input type="text" th:field="*{name}" class="form-control" placeholder="Name" />
+                            <input type="text" th:field="*{name}" class="form-control" placeholder="Name"/>
                         </div>
                         <div class="form-group col-md-8">
-                            <label  class="col-form-label">Author</label>
-                            <input type="text" th:field="*{author}" class="form-control" placeholder="Author" />
+                            <label class="col-form-label">Author</label>
+                            <input type="text" th:field="*{author}" class="form-control" placeholder="Author"/>
                         </div>
                         <div class="form-group col-md-8">
                             <label class="col-form-label">Status</label>
-                            <input type="text" th:field="*{status}" class="form-control" placeholder="Status" />
+                            <input type="text" th:field="*{status}" class="form-control" placeholder="Status"/>
                         </div>
-                        <div class="form-group col-md-8" >
+                        <div class="form-group col-md-8">
                             <label class="col-form-label">Category</label>
-                            <select class="form-control">
+                            <select class="form-control" th:field="*{category}">
                                 <option th:each="cate : ${categories}"
                                         th:value="${cate.id}"
                                         th:text="${cate.name}">
                                 </option>
                             </select>
                         </div>
-                        <div class="form-group col-md-8" >
+                        <div class="form-group col-md-8">
                             <label class="col-form-label">Library</label>
-                            <select class="form-control">
+                            <select class="form-control" th:field="*{library}">
                                 <option th:each="li : ${libraries}"
                                         th:value="${li.id}"
                                         th:text="${li.name}">

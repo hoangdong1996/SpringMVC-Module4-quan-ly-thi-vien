@@ -19,21 +19,21 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @RequestMapping(value = "/categories")
-    public String listCategory(Model model){
+    public String listCategory(Model model) {
         List<Category> categories = categoryService.findAll();
         model.addAttribute("categories", categories);
         return "category/list-category";
     }
 
     @RequestMapping(value = "/add-category")
-    public String addCategory(Model model){
+    public String addCategory(Model model) {
         model.addAttribute("category", new Category());
         return "category/add-category";
     }
 
     @RequestMapping(value = "/edit-category/{id}")
-    public String editCategory(@PathVariable("id") Optional<Long> id, Model model){
-        if (id.isPresent()){
+    public String editCategory(@PathVariable("id") Optional<Long> id, Model model) {
+        if (id.isPresent()) {
             Optional<Category> category = categoryService.findById(id.get());
             model.addAttribute("category", category);
         } else {
@@ -42,14 +42,14 @@ public class CategoryController {
         return "category/edit-category";
     }
 
-    @RequestMapping(value = "/save-category",method = RequestMethod.POST)
-    public String saveCategory(Category category){
+    @RequestMapping(value = "/save-category", method = RequestMethod.POST)
+    public String saveCategory(Category category) {
         categoryService.save(category);
         return "redirect:/categories";
     }
 
     @RequestMapping(value = "/delete-category/{id}", method = RequestMethod.GET)
-    public String deleteCategory(@PathVariable("id") Long id, Model model){
+    public String deleteCategory(@PathVariable("id") Long id, Model model) {
         categoryService.remove(id);
         return "redirect:/categories";
     }

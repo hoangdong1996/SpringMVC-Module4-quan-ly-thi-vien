@@ -5,5 +5,5 @@ import com.codegym.quanlythuvien.model.Category;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface CategoryService extends GeneralService<Category>{
+public interface CategoryService extends GeneralService<Category> {
 }
