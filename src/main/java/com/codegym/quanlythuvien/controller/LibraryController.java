@@ -65,7 +65,7 @@ public class LibraryController {
         return "library/borrow-book";
     }
 
-    @RequestMapping(value = "save-borrow-book"  , method = RequestMethod.POST)
+    @RequestMapping(value = "save-borrow-book", method = RequestMethod.POST)
     public String saveBook(Book book) {
         bookService.save(book);
         return "redirect:/libraries";

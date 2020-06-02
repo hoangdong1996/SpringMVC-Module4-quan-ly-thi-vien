@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
     @Autowired
     private BookService bookService;
+
     @GetMapping("/")
     public String root(Model model) {
         Long count = bookService.countBook();
-        model.addAttribute("count",count);
+        model.addAttribute("count", count);
         return "index";
     }
 

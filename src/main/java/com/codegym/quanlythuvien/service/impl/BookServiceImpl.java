@@ -5,6 +5,8 @@ import com.codegym.quanlythuvien.model.Library;
 import com.codegym.quanlythuvien.repository.BookRepository;
 import com.codegym.quanlythuvien.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -49,6 +51,16 @@ public class BookServiceImpl implements BookService {
     @Override
     public Long countBook() {
         return bookRepository.count();
+    }
+
+    @Override
+    public Page<Book> findAll(Pageable pageable) {
+        return bookRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Book> findAllByNameContaining(String name, Pageable pageable) {
+        return bookRepository.findAllByNameContaining(name, pageable);
     }
 
 

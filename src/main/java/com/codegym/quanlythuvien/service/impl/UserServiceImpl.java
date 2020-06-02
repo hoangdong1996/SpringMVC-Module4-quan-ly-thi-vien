@@ -24,24 +24,23 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
-
-    @Override
-    public User save(User user) {
-        User user1 = new User();
-        user1.setFirstName(user.getFirstName());
-        user1.setLastName(user.getLastName());
-        user1.setEmail(user.getEmail());
-        user1.setPassword(passwordEncoder.encode(user.getPassword()));
-        user1.setRoles(Arrays.asList(new Role("ROLE_USER")));
-        return userRepository.save(user1);
-    }
+//    @Autowired
+//    private BCryptPasswordEncoder passwordEncoder;
+//
+//    @Override
+//    public User save(User user) {
+//        User user1 = new User();
+//        user1.setFirstName(user.getFirstName());
+//        user1.setLastName(user.getLastName());
+//        user1.setEmail(user.getEmail());
+//        user1.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user1.setRoles(Arrays.asList(new Role("ROLE_USER")));
+//        return userRepository.save(user1);
+//    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

@@ -27,13 +27,13 @@ public class UserController {
         return "add-user";
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
-        userValidator.validate(userForm, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return "add-user";
-        }
-        userService.save(userForm);
-        return "redirect:";
-    }
+//    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+//    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+//        userValidator.validate(userForm, bindingResult);
+//        if (bindingResult.hasErrors()) {
+//            return "add-user";
+//        }
+//        userService.save(userForm);
+//        return "redirect:";
+//    }
 }
