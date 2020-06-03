@@ -3,6 +3,7 @@ package com.codegym.quanlythuvien.service.impl;
 import com.codegym.quanlythuvien.model.Book;
 import com.codegym.quanlythuvien.model.Library;
 import com.codegym.quanlythuvien.repository.BookRepository;
+import com.codegym.quanlythuvien.repository.LibraryRepository;
 import com.codegym.quanlythuvien.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,9 @@ import java.util.Optional;
 public class BookServiceImpl implements BookService {
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private LibraryRepository libraryRepository;
 
     @Override
     public Optional<Book> findById(Long id) {
@@ -46,6 +50,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findAllByBorrowDateNotNull() {
         return bookRepository.findAllByBorrowDateNotNull();
+    }
+
+    @Override
+    public List<Book> findALlByBorrowDateNotNullAndLibrary(Optional<Library> library) {
+        return bookRepository.findAllByBorrowDateNotNullAndLibrary(library);
     }
 
     @Override

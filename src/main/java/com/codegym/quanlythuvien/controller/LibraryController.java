@@ -61,6 +61,7 @@ public class LibraryController {
         }
         return "library/edit-library";
     }
+
     @RequestMapping(value = "views-library/{id}")
     public String viewsLibrary(@PathVariable("id") Long id, Model model) {
         Optional<Library> library = libraryService.findById(id);
@@ -70,48 +71,6 @@ public class LibraryController {
         return "library/views-library";
     }
 
-    @RequestMapping(value = "/borrow-book/{id}", method = RequestMethod.GET)
-    public String borrowBook(@PathVariable("id") Optional<Long> id, Model model) {
-        if (id.isPresent()) {
-            Optional<Book> book = bookService.findById(id.get());
-            model.addAttribute("book", book);
-        } else {
-            model.addAttribute("book", new Book());
-        }
-        return "library/borrow-book";
-    }
-
-    @RequestMapping(value = "save-borrow-book", method = RequestMethod.POST)
-    public String saveBook(Book book) {
-        bookService.save(book);
-        return "redirect:/libraries";
-    }
-
-    @RequestMapping("/list-borrow-book")
-    public String listBorrowBook(Model model) {
-        List<Book> books = bookService.findAllByBorrowDateNotNull();
-        model.addAttribute("books", books);
-        return "library/list-borrow-book";
-    }
-
-    @RequestMapping(value = "/return-book/{id}", method = RequestMethod.GET)
-    public String returnBook(@PathVariable("id") Optional<Long> id, Book book) {
-        Optional<Book> book1 = bookService.findById(id.get());
-
-        book.setAuthor(book1.get().getAuthor());
-        book.setIsbn(book1.get().getIsbn());
-        book.setName(book1.get().getName());
-        book.setStatus(book1.get().getStatus());
-        book.setCategory(book1.get().getCategory());
-        book.setLibrary(book1.get().getLibrary());
-
-        book.setStudent(null);
-        book.setBorrowDate(null);
-        book.setReturnDate(null);
-
-        bookService.save(book);
-        return "redirect:/list-borrow-book";
-    }
 
     @ModelAttribute("books")
     public List<Book> books() {

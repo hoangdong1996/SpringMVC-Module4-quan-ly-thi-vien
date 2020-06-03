@@ -1,6 +1,7 @@
 package com.codegym.quanlythuvien.repository;
 
 import com.codegym.quanlythuvien.model.Book;
+import com.codegym.quanlythuvien.model.Librarian;
 import com.codegym.quanlythuvien.model.Library;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ public interface BookRepository extends PagingAndSortingRepository<Book, Long> {
     List<Book> findAllByLibrary(Optional<Library> library);
 
     List<Book> findAllByBorrowDateNotNull();
+    List<Book> findAllByBorrowDateNotNullAndLibrary(Optional<Library> library);
 
     Page<Book> findAllByNameContaining(String name, Pageable pageable);
 

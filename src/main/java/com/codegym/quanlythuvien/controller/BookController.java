@@ -6,6 +6,7 @@ import com.codegym.quanlythuvien.model.Library;
 import com.codegym.quanlythuvien.service.BookService;
 import com.codegym.quanlythuvien.service.CategoryService;
 import com.codegym.quanlythuvien.service.LibraryService;
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -74,6 +75,51 @@ public class BookController {
         Optional<Book> book = bookService.findById(id);
         model.addAttribute("book", book);
         return "a";
+    }
+
+
+    @RequestMapping(value = "/borrow-book/{id}", method = RequestMethod.GET)
+    public String borrowBook(@PathVariable("id") Optional<Long> id, Model model) {
+        if (id.isPresent()) {
+            Optional<Book> book = bookService.findById(id.get());
+            model.addAttribute("book", book);
+        } else {
+            model.addAttribute("book", new Book());
+        }
+        return "library/borrow-book";
+    }
+
+    @RequestMapping(value = "save-borrow-book", method = RequestMethod.POST)
+    public String saveBorrowBook(Book book) {
+        bookService.save(book);
+        return "redirect:/libraries";
+    }
+
+    @RequestMapping(value = "/list-borrow-book/{id}", method = RequestMethod.GET)
+    public String listBorrowBook(@PathVariable("id") Optional<Long> id, Model model) {
+        Optional<Library> library = libraryService.findById(id.get());
+        List<Book> books = bookService.findALlByBorrowDateNotNullAndLibrary(library);
+        model.addAttribute("books", books);
+        return "library/list-borrow-book";
+    }
+
+    @RequestMapping(value = "/return-book/{id}", method = RequestMethod.GET)
+    public String returnBook(@PathVariable("id") Optional<Long> id, Book book) {
+        Optional<Book> book1 = bookService.findById(id.get());
+
+        book.setAuthor(book1.get().getAuthor());
+        book.setIsbn(book1.get().getIsbn());
+        book.setName(book1.get().getName());
+        book.setStatus(book1.get().getStatus());
+        book.setCategory(book1.get().getCategory());
+        book.setLibrary(book1.get().getLibrary());
+
+        book.setStudent(null);
+        book.setBorrowDate(null);
+        book.setReturnDate(null);
+
+        bookService.save(book);
+        return "redirect:/list-borrow-book";
     }
 
     @RequestMapping("/count")
