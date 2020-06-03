@@ -8,4 +8,5 @@ import java.util.Optional;
 
 @Service
 public interface LibraryService extends GeneralService<Library> {
+    List<Library> findAllByName(String name);
 }

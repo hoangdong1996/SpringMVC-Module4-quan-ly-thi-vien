@@ -2,17 +2,12 @@ package com.codegym.quanlythuvien.controller;
 
 import com.codegym.quanlythuvien.model.Book;
 import com.codegym.quanlythuvien.model.Library;
-import com.codegym.quanlythuvien.model.Student;
 import com.codegym.quanlythuvien.service.BookService;
 import com.codegym.quanlythuvien.service.LibraryService;
-import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,8 +21,14 @@ public class LibraryController {
     private BookService bookService;
 
     @RequestMapping("/libraries")
-    public String listLibrary(Model model) {
-        List<Library> libraries = libraryService.findAll();
+    public String listLibrary(@RequestParam("searchLibrary") Optional<String> nameLibrary, Model model) {
+        List<Library> libraries;
+        if (nameLibrary.isPresent())
+        {
+             libraries = libraryService.findAllByName(nameLibrary.get());
+        } else {
+            libraries = libraryService.findAll();
+        }
         model.addAttribute("libraries", libraries);
         return "library/list-library";
     }
@@ -44,7 +45,22 @@ public class LibraryController {
         return "redirect:/libraries";
     }
 
+    @RequestMapping(value = "/delete-library/{id}")
+    public String deleteLibrary(@PathVariable("id") Long id){
+        libraryService.remove(id);
+        return "redirect:/libraries";
+    }
 
+    @RequestMapping(value = "/edit-library/{id}", method = RequestMethod.GET)
+    public String editBook(@PathVariable("id") Optional<Long> id, Model model) {
+        if (id.isPresent()) {
+            Optional<Library> library = libraryService.findById(id.get());
+            model.addAttribute("library", library);
+        } else {
+            model.addAttribute("library", new Library());
+        }
+        return "library/edit-library";
+    }
     @RequestMapping(value = "views-library/{id}")
     public String viewsLibrary(@PathVariable("id") Long id, Model model) {
         Optional<Library> library = libraryService.findById(id);

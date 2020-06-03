@@ -29,7 +29,7 @@ public class BookController {
     private LibraryService libraryService;
 
     @RequestMapping("/books")
-    public String listBook(@RequestParam("seachBook") Optional<String> s, Model model, @PageableDefault(size = 5) Pageable pageable) {
+    public String listBook(@RequestParam("searchBook") Optional<String> s, Model model, @PageableDefault(size = 5) Pageable pageable) {
         Page<Book> books;
         if (s.isPresent()) {
             books = bookService.findAllByNameContaining(s.get(), pageable);
@@ -43,7 +43,7 @@ public class BookController {
     @RequestMapping(value = "/add-book")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
-        return "book/add-bookk";
+        return "book/add-book";
     }
 
     @RequestMapping(value = "/edit-book/{id}", method = RequestMethod.GET)
@@ -64,7 +64,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/delete-book/{id}", method = RequestMethod.GET)
-    public String deleteBook(@PathVariable("id") Long id, Model model) {
+    public String deleteBook(@PathVariable("id") Long id) {
         bookService.remove(id);
         return "redirect:/books";
     }

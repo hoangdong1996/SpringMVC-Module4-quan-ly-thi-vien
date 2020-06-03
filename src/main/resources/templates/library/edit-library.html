@@ -133,52 +133,29 @@
                     <li class="breadcrumb-item active">Tables</li>
                 </ol>
                 <div class="container my-5">
-                    <h3> Add Book</h3>
+                    <h3> Edit Library</h3>
                     <div class="card">
                         <div class="card-body">
                             <div class="col-md-10">
-                                <form action="#" th:action="@{/save-book}" th:object="${book}" method="post">
-                                    <div class="row">
-                                        <div class="form-group col-md-8">
-                                            <label class="col-form-label">ISBN</label>
-                                            <input type="text" th:field="*{isbn}" class="form-control" placeholder="ISBN"/>
+                                <form action="#" th:action="@{/save-library}" th:object="${library}" method="post">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Name</label>
+                                        <div class="col-sm-8">
+                                            <input th:field="*{name}" type="text" class="form-control"
+                                                   placeholder="Name">
                                         </div>
-                                        <div class="form-group col-md-8">
-                                            <label class="col-form-label">Name</label>
-                                            <input type="text" th:field="*{name}" class="form-control" placeholder="Name"/>
-                                        </div>
-                                        <div class="form-group col-md-8">
-                                            <label class="col-form-label">Author</label>
-                                            <input type="text" th:field="*{author}" class="form-control" placeholder="Author"/>
-                                        </div>
-                                        <div class="form-group col-md-8">
-                                            <label class="col-form-label">Status</label>
-                                            <input type="text" th:field="*{status}" class="form-control" placeholder="Status"/>
-                                        </div>
-                                        <div class="form-group col-md-8">
-                                            <label class="col-form-label">Category</label>
-                                            <select class="form-control" th:field="*{category}">
-                                                <option th:each="cate : ${categories}"
-                                                        th:value="${cate.id}"
-                                                        th:text="${cate.name}">
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-8">
-                                            <label class="col-form-label">Library</label>
-                                            <select class="form-control" th:field="*{library}">
-                                                <option th:each="li : ${libraries}"
-                                                        th:value="${li.id}"
-                                                        th:text="${li.name}">
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="submit" class="btn btn-primary" value=" Submit ">
-                                        </div>
-                                        <input type="hidden" id="id" th:field="*{id}">
-
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Info</label>
+                                        <div class="col-sm-8">
+                                            <input th:field="*{info}" type="text" class="form-control"
+                                                   placeholder="Info">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="submit" class="btn btn-primary" value=" Submit ">
+                                    </div>
+                                    <input type="hidden" id="id" th:field="*{id}">
                                 </form>
                             </div>
                         </div>
@@ -209,3 +186,4 @@
 <script src="../assets/demo/datatables-demo.js"></script>
 </body>
 </html>
+

@@ -4,10 +4,11 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "libraries")
+@Table(name = "librarian")
 public class Librarian {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "librarian_id")
     private Long id;
 
     @Column(name = "librarian_name")

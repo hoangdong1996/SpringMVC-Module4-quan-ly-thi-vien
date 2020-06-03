@@ -136,7 +136,7 @@
                         <a class="nav-link" th:href="@{/add-book}"><button class="btn btn-outline-success my-2 my-sm-2" type="submit" href="/add-book">Add book</button>
                         </a>
                         <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" name="seachBook" placeholder="Search" aria-label="Search">
+                            <input class="form-control mr-sm-2" type="search" name="searchBook" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </nav>
@@ -179,6 +179,17 @@
                                 <span th:text="${books.number + 1}"></span>/<span th:text="${books.totalPages}"></span>
                                 <a th:href="@{'/books'(page=${books.number + 1})}" th:if="${books.hasNext()}">Next</a>
                             </div>
+<!--                            <nav aria-label="Page navigation example">-->
+<!--                                <ul class="pagination justify-content-end">-->
+<!--                                    <li class="page-item disabled">-->
+<!--                                        <a th:href="@{'/books'(page=${books.number - 1})}" th:if="${books.hasPrevious()}" class="page-link">Previous</a>-->
+<!--                                    </li>-->
+<!--                                    <li class="page-item"><a th:text="${books.number + 1}"> </a></li>-->
+<!--                                    <li class="page-item">-->
+<!--                                        <a class="page-link" th:href="@{'/books'(page=${books.number + 1})}" th:if="${books.hasNext()}">Next</a>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </nav>-->
                         </div>
                     </div>
                 </div>
