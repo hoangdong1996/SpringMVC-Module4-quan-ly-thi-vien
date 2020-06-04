@@ -58,6 +58,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<Book> findAllByNameAndLibrary(String name, Optional<Library> library) {
+        return bookRepository.findAllByNameContainingAndLibrary(name,library);
+    }
+
+    @Override
     public Long countBook() {
         return bookRepository.count();
     }

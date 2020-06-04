@@ -112,7 +112,7 @@
                         Book</a>
                     <a class="nav-link" th:href="@{/libraries}">
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                        Library</a>
+                        Tables</a>
                     <a class="nav-link" th:href="@{/students}">
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         Student</a>
@@ -133,11 +133,11 @@
                     <li class="breadcrumb-item active">Tables</li>
                 </ol>
                 <div class="container my-5">
-                    <h3> Edit Library</h3>
+                    <h3> Edit Book</h3>
                     <div class="card">
                         <div class="card-body">
                             <div class="col-md-10">
-                                <form action="#" th:action="@{/save-library}" th:object="${library}" method="post">
+                                <form action="#" th:action="@{/save-student}" th:object="${student}" method="post">
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Name</label>
                                         <div class="col-sm-8">
@@ -146,16 +146,24 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Info</label>
+                                        <label class="col-sm-2 col-form-label">ClassRoom</label>
                                         <div class="col-sm-8">
-                                            <input th:field="*{info}" type="text" class="form-control"
-                                                   placeholder="Info">
+                                            <input th:field="*{classroom}" type="text" class="form-control"
+                                                   placeholder="ClassRoom">
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">School</label>
+                                        <div class="col-sm-8">
+                                            <input th:field="*{school}" type="text" class="form-control"
+                                                   placeholder="School">
+                                        </div>
+                                    </div>
+
                                     <div class="col-sm-2">
                                         <input type="submit" class="btn btn-primary" value=" Submit ">
                                     </div>
-                                    <input type="hidden" id="id" th:field="*{id}">
+                                    <input type="hidden" th:field="*{id}">
                                 </form>
                             </div>
                         </div>
@@ -186,4 +194,3 @@
 <script src="../assets/demo/datatables-demo.js"></script>
 </body>
 </html>
-

@@ -19,6 +19,8 @@ public interface BookService extends GeneralService<Book> {
 
     List<Book> findALlByBorrowDateNotNullAndLibrary(Optional<Library> library);
 
+    List<Book> findAllByNameAndLibrary(String name, Optional<Library> library);
+
     Long countBook();
 
     Page<Book> findAll(Pageable pageable);

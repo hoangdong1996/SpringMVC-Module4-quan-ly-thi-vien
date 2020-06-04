@@ -63,9 +63,14 @@ public class LibraryController {
     }
 
     @RequestMapping(value = "views-library/{id}")
-    public String viewsLibrary(@PathVariable("id") Long id, Model model) {
+    public String viewsLibrary(@PathVariable("id") Long id,@RequestParam("searchBook") Optional<String> nameBook, Model model) {
+       List<Book> books;
         Optional<Library> library = libraryService.findById(id);
-        List<Book> books = bookService.findAllByLibrary(library);
+        if (nameBook.isPresent()){
+            books = bookService.findAllByNameAndLibrary(nameBook.get(), library);
+        } else {
+            books = bookService.findAllByLibrary(library);
+        }
         model.addAttribute("library", library);
         model.addAttribute("books", books);
         return "library/views-library";

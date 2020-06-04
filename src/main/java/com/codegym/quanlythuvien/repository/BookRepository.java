@@ -17,6 +17,9 @@ public interface BookRepository extends PagingAndSortingRepository<Book, Long> {
     List<Book> findAllByLibrary(Optional<Library> library);
 
     List<Book> findAllByBorrowDateNotNull();
+
+    List<Book> findAllByNameContainingAndLibrary(String name, Optional<Library> library);
+
     List<Book> findAllByBorrowDateNotNullAndLibrary(Optional<Library> library);
 
     Page<Book> findAllByNameContaining(String name, Pageable pageable);

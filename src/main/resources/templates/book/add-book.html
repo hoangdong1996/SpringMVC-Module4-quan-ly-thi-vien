@@ -107,15 +107,15 @@
                         </nav>
                     </div>
                     <div class="sb-sidenav-menu-heading">Addons</div>
-                    <a class="nav-link" href="../charts.html"
-                    >
+                    <a class="nav-link" th:href="@{/books}">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                        Charts</a
-                    ><a class="nav-link" href="list-book.html"
-                >
+                        Book</a>
+                    <a class="nav-link" th:href="@{/libraries}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Tables</a
-                >
+                    Tables</a>
+                    <a class="nav-link" th:href="@{/students}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Student</a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
@@ -129,7 +129,7 @@
             <div class="container-fluid">
                 <h1 class="mt-4">Tables</h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="../index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item">Dashboard</a></li>
                     <li class="breadcrumb-item active">Tables</li>
                 </ol>
                 <div class="container my-5">
