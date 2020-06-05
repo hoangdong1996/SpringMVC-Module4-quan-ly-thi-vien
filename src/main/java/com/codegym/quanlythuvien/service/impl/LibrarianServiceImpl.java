@@ -1,9 +1,7 @@
 package com.codegym.quanlythuvien.service.impl;
 
 import com.codegym.quanlythuvien.model.Librarian;
-import com.codegym.quanlythuvien.model.Library;
 import com.codegym.quanlythuvien.repository.LibrarianRepository;
-import com.codegym.quanlythuvien.repository.LibraryRepository;
 import com.codegym.quanlythuvien.service.LibrarianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

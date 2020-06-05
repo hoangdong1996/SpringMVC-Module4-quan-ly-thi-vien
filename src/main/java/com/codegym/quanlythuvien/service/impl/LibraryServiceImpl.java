@@ -35,8 +35,10 @@ public class LibraryServiceImpl implements LibraryService {
         libraryRepository.deleteById(id);
     }
 
+
     @Override
     public List<Library> findAllByName(String name) {
         return libraryRepository.findAllByNameContaining(name);
     }
+
 }

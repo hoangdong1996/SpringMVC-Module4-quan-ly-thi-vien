@@ -1,5 +1,6 @@
 package com.codegym.quanlythuvien.service;
 
+import com.codegym.quanlythuvien.model.Library;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface GeneralService<E> {
     void save(E e);
 
     void remove(Long id);
+
 }

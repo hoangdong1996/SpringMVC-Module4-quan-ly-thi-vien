@@ -24,24 +24,22 @@
             <input class="form-control" type="text" placeholder="Search for..." aria-label="Search"
                    aria-describedby="basic-addon2"/>
             <div class="input-group-append">
-                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </form>
     <!-- Navbar-->
-    <form th:action="@{/logout}" method="post">
-        <ul class="navbar-nav ml-auto ml-md-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
-                    <div class="dropdown-divider"></div>
-                    <input class="dropdown-item" href="login1.html" type="submit" value="Logout"></input>
-                </div>
-            </li>
-        </ul>
-    </form>
+    <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="../login1.html">Logout</a>
+            </div>
+        </li>
+    </ul>
 </nav>
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
@@ -66,7 +64,8 @@
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                          data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="../layout-static.html">Static
-                            Navigation</a><a class="nav-link" href="../layout-sidenav-light.html">Light Sidenav</a></nav>
+                            Navigation</a><a class="nav-link" href="../layout-sidenav-light.html">Light Sidenav</a>
+                        </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                        aria-expanded="false" aria-controls="collapsePages"
@@ -87,7 +86,8 @@
                             </a>
                             <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
                                  data-parent="#sidenavAccordionPages">
-                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="../login1.html">Login</a><a
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link"
+                                                                           href="../login1.html">Login</a><a
                                         class="nav-link" href="../register.html">Register</a><a class="nav-link"
                                                                                                 href="../password.html">Forgot
                                     Password</a></nav>
@@ -101,9 +101,11 @@
                             </a>
                             <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                                  data-parent="#sidenavAccordionPages">
-                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="../401.html">401 Page</a><a
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="../401.html">401
+                                    Page</a><a
                                         class="nav-link" href="../404.html">404 Page</a><a class="nav-link"
-                                                                                           href="../500.html">500 Page</a>
+                                                                                           href="../500.html">500
+                                    Page</a>
                                 </nav>
                             </div>
                         </nav>
@@ -113,7 +115,7 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Book</a>
                     <a class="nav-link" th:href="@{/libraries}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         Library</a>
                     <a class="nav-link" th:href="@{/students}">
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
@@ -129,62 +131,65 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Library</h1>
+                <h1 class="mt-4">Tables</h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="../index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item">Dashboard</a></li>
                     <li class="breadcrumb-item active">Tables</li>
                 </ol>
-                <div class="card mb-4">
-                    <nav class="navbar navbar-light bg-light">
-                        <a class="nav-link" th:href="@{/add-library}"><button class="btn btn-outline-success my-2 my-sm-2" type="submit" href="/add-book">Add library</button>
-                        </a>
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" name="searchLibrary" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </nav>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Info</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                            <th>Views</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="li : ${libraries}">
-                                            <td th:text="${li.name}"></td>
-                                            <td th:text="${li.info}"></td>
-                                            <td>
-                                                <a th:href="@{/edit-library/{id}(id=${li.id})}"
-                                                   class="btn btn-primary">
-                                                    <i class="fas fa-user-edit ml-2"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a th:href="@{/delete-library/{id}(id=${li.id})}"
-                                                   class="btn btn-primary">
-                                                    <i class="fas fa-user-times ml-2"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a th:href="@{/views-library/{id}(id=${li.id})}"
-                                                   class="btn btn-primary">
-                                                    <i class="fas fa-user-times ml-2"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                <div class="container my-5">
+                    <h3> Add Book In Library <span th:text="${library.get().name}"></span></h3>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-md-10">
+                                <form action="#" th:action="@{/save-book-library/{id}(id=${library.get().id})}"
+                                      th:object="${book}" method="post">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">ISBN</label>
+                                        <div class="col-sm-8">
+                                            <input th:field="*{isbn}" type="text" class="form-control"
+                                                   placeholder="ISBN">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Name</label>
+                                        <div class="col-sm-8">
+                                            <input th:field="*{name}" type="text" class="form-control"
+                                                   placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Author</label>
+                                        <div class="col-sm-8">
+                                            <input th:field="*{author}" type="text" class="form-control"
+                                                   placeholder="Author">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Status</label>
+                                        <div class="col-sm-8">
+                                            <input th:field="*{status}" type="text" class="form-control"
+                                                   placeholder="Status">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Category</label>
+                                        <select class="form-control col-sm-8" th:field="*{category}">
+                                            <option th:each="cate : ${categories}"
+                                                    th:value="${cate.id}"
+                                                    th:text="${cate.name}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="submit" class="btn btn-primary" value=" Submit ">
+                                    </div>
+                                    <input type="hidden" id="id" th:field="*{id}">
+                                </form>
                             </div>
+                        </div>
                     </div>
+                </div>
             </div>
-
         </main>
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
@@ -204,11 +209,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
 <script src="/assets/js/scripts.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+<script src="../assets/demo/datatables-demo.js"></script>
 </body>
-
 </html>
-
-
-

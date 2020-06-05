@@ -136,6 +136,8 @@
                 </ol>
                 <div class="card mb-4">
                     <nav class="navbar navbar-light bg-light">
+                        <a class="nav-link" th:href="@{/add-book-library/{id}(id=${library.get().id})}"><button class="btn btn-outline-success my-2 my-sm-2" type="submit" >Add book</button>
+                        </a>
                         <a class="nav-link" th:href="@{/list-borrow-book/{id}(id=${library.get().id})}"><button class="btn btn-outline-success my-2 my-sm-2" type="submit" >List borrow book</button>
                         </a>
                         <form class="form-inline">
@@ -162,7 +164,7 @@
                                     <td th:text="${book.author}"></td>
                                     <td th:text="${book.status}"></td>
                                     <td>
-                                        <a th:href="@{/borrow-book/{id}(id=${book.id})}"
+                                        <a th:if="${book.status == '1'}" th:href="@{/borrow-book/{id}(id=${book.id})}"
                                            class="btn btn-primary">
                                             <i class="fas fa-user-times ml-2"></i>
                                         </a>

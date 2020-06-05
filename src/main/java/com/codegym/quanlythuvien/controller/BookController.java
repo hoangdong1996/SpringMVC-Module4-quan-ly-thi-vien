@@ -119,7 +119,26 @@ public class BookController {
         book.setReturnDate(null);
 
         bookService.save(book);
-        return "redirect:/list-borrow-book";
+        return "redirect:/list-borrow-book/{id}";
+    }
+
+
+    @RequestMapping(value = "/add-book-library/{id}")
+    public String addBookInLibrary(@PathVariable("id") Long id, Model model) {
+        Optional<Library> library = libraryService.findById(id);
+        model.addAttribute("library", library);
+        model.addAttribute("book", new Book());
+        return "library/add-book-library";
+    }
+
+    @RequestMapping(value = "/save-book-library/{id}", method = RequestMethod.POST)
+    public String saveBookInLibrary(Book book, @PathVariable Long id) {
+        Optional<Library> library = libraryService.findById(id);
+        if (library.isPresent()) {
+            book.setLibrary(library.get());
+        }
+        bookService.save(book);
+        return "redirect:/views-library/{id}";
     }
 
     @RequestMapping("/count")

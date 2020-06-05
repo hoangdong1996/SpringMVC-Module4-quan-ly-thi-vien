@@ -1,6 +1,5 @@
 package com.codegym.quanlythuvien.service.impl;
 
-import com.codegym.quanlythuvien.model.Book;
 import com.codegym.quanlythuvien.model.Category;
 import com.codegym.quanlythuvien.repository.CategoryRepository;
 import com.codegym.quanlythuvien.service.CategoryService;

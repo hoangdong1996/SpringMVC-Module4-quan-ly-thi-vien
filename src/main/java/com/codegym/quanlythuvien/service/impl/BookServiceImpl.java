@@ -10,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,6 +59,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findAllByNameAndLibrary(String name, Optional<Library> library) {
         return bookRepository.findAllByNameContainingAndLibrary(name,library);
+    }
+
+    @Override
+    public List<Book> findAllByBorrowDateNull() {
+        return bookRepository.findAllByBorrowDateNull();
     }
 
     @Override
