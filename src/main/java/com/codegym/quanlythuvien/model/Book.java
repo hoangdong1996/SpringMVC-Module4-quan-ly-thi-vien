@@ -2,9 +2,9 @@ package com.codegym.quanlythuvien.model;
 
 import javax.persistence.*;
 import javax.persistence.Id;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "Books")
@@ -15,16 +15,20 @@ public class Book {
     private Long id;
 
     @Column(name = "ISBN")
+    @NotNull
+    @Pattern(regexp = "^(97(8|9))?\\d{9}(\\d|X)$", message = "ISBN 13 numbers start with only 978 or 979.")
     private String isbn;
 
     @Column(name = "book_name")
+    @NotBlank
     private String name;
 
     @Column(name = "author")
+    @NotBlank
     private String author;
 
     @Column(name = "status")
-    private String status;
+    private Boolean status  ;
 
     @Column(name = "borrow_date")
     private String borrowDate;
@@ -47,7 +51,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(String isbn, String name, String author, String status, String borrowDate, String returnDate) {
+    public Book(String isbn, String name, String author, Boolean status, String borrowDate, String returnDate) {
         this.isbn = isbn;
         this.name = name;
         this.author = author;
@@ -88,11 +92,11 @@ public class Book {
         this.author = author;
     }
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
@@ -111,21 +115,6 @@ public class Book {
     public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
-//    public LocalDate getBorrowDate() {
-//        return borrowDate;
-//    }
-//
-//    public void setBorrowDate(LocalDate borrowDate) {
-//        this.borrowDate = borrowDate;
-//    }
-//
-//    public LocalDate getReturnDate() {
-//        return returnDate;
-//    }
-//
-//    public void setReturnDate(LocalDate returnDate) {
-//        this.returnDate = returnDate;
-//    }
 
     public Category getCategory() {
         return category;

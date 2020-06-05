@@ -140,35 +140,31 @@
                                 <form action="#" th:action="@{/save-book}" th:object="${book}" method="post">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">ISBN</label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-6">
                                                 <input th:field="*{isbn}" type="text" class="form-control"
                                                        placeholder="ISBN">
                                             </div>
+                                            <div class="col-sm-4" th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"> ISBN Error</div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Name</label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-6">
                                                 <input th:field="*{name}" type="text" class="form-control"
                                                        placeholder="Name">
                                             </div>
+                                            <div class="col-sm-4" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> Name Error</div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Author</label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-6">
                                                 <input th:field="*{author}" type="text" class="form-control"
                                                        placeholder="Author">
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Status</label>
-                                            <div class="col-sm-8">
-                                                <input th:field="*{status}" type="text" class="form-control"
-                                                       placeholder="Status">
-                                            </div>
+                                            <div class="col-sm-4" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"> Name Error</div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Category</label>
-                                            <select class="form-control col-sm-8" th:field="*{category}">
+                                            <select class="form-control col-sm-6" th:field="*{category}">
                                                 <option th:each="cate : ${categories}"
                                                         th:value="${cate.id}"
                                                         th:text="${cate.name}">
@@ -177,7 +173,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Library</label>
-                                            <select class="form-control col-sm-8" th:field="*{library}">
+                                            <select class="form-control col-sm-6" th:field="*{library}">
                                                 <option th:each="li : ${libraries}"
                                                         th:value="${li.id}"
                                                         th:text="${li.name}">
