@@ -1,45 +1,53 @@
 package com.codegym.quanlythuvien.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String name;
+public class Role implements Serializable{
+        private static final long serialVersionUID = 1L;
+        private Integer id;
+        private String name;
+        private Set<UsersRoles> usersRoleses = new HashSet<UsersRoles>(0);
 
-    public Role() {
-    }
+        public Role() {
+        }
 
-    public Role(String name) {
-        this.name = name;
-    }
+        public Role(String name, Set<UsersRoles> usersRoleses) {
+            this.name = name;
+            this.usersRoleses = usersRoleses;
+        }
 
-    public Long getId() {
-        return id;
-    }
+        @Id
+        @GeneratedValue(strategy = IDENTITY)
+        @Column(name = "id", unique = true, nullable = false)
+        public Integer getId() {
+            return this.id;
+        }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+        public void setId(Integer id) {
+            this.id = id;
+        }
 
-    public String getName() {
-        return name;
-    }
+        @Column(name = "name", length = 45)
+        public String getName() {
+            return this.name;
+        }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+        public void setName(String name) {
+            this.name = name;
+        }
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+        public Set<UsersRoles> getUsersRoleses() {
+            return this.usersRoleses;
+        }
+
+        public void setUsersRoleses(Set<UsersRoles> usersRoleses) {
+            this.usersRoleses = usersRoleses;
+        }
 }

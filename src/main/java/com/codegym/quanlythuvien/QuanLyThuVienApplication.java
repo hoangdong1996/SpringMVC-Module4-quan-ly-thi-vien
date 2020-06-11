@@ -14,19 +14,4 @@ public class QuanLyThuVienApplication {
     public static void main(String[] args) {
         SpringApplication.run(QuanLyThuVienApplication.class, args);
     }
-
-//    @Autowired
-//    UserRepository userRepository;
-//    @Autowired
-//    PasswordEncoder passwordEncoder;
-//
-//    @Override
-//    public void run(String... args) throws Exception {
-//        // Insert vào csdl một user.
-//        User user = new User();
-//        user.setEmail("a");
-//        user.setPassword(passwordEncoder.encode("a"));
-//        userRepository.save(user);
-//        System.out.println(user);
-//    }
 }

@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping(value = "/user")
 public class BookController implements WebMvcConfigurer {
     @Autowired
     private BookService bookService;
@@ -99,6 +100,7 @@ public class BookController implements WebMvcConfigurer {
 
     @RequestMapping(value = "save-borrow-book", method = RequestMethod.POST)
     public String saveBorrowBook(Book book) {
+        book.setStatus(true);
         bookService.save(book);
         return "redirect:/libraries";
     }
@@ -118,10 +120,10 @@ public class BookController implements WebMvcConfigurer {
         book.setAuthor(book1.get().getAuthor());
         book.setIsbn(book1.get().getIsbn());
         book.setName(book1.get().getName());
-        book.setStatus(book1.get().getStatus());
         book.setCategory(book1.get().getCategory());
         book.setLibrary(book1.get().getLibrary());
 
+        book.setStatus(false);
         book.setStudent(null);
         book.setBorrowDate(null);
         book.setReturnDate(null);

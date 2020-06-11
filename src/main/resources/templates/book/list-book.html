@@ -29,7 +29,7 @@
         </div>
     </form>
     <!-- Navbar-->
-    <form th:action="@{/logout}" method="post">
+    <form th:action="@{/j_spring_security_logout}" method="post">
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
@@ -37,7 +37,8 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                 <div class="dropdown-divider"></div>
-                <input class="dropdown-item" href="login1.html" type="submit" value="Logout"></input>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input class="dropdown-item" type="submit" value="Logout"></input>
             </div>
         </li>
     </ul>
@@ -162,7 +163,8 @@
                                     <td th:text="${book.name}"></td>
                                     <td th:text="${book.author}"></td>
                                     <td >
-                                        <span th:if="${book.status == '0'}" >Chưa mượn</span>
+                                        <span th:if="${book.status == true}" >Đang mượn</span>
+                                        <span th:if="${book.status == false}" >Chưa mượn</span>
                                     </td>
                                     <td>
                                         <a th:href="@{/edit-book/{id}(id=${book.id})}"
