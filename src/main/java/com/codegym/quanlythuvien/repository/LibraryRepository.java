@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface LibraryRepository extends CrudRepository<Library, Long> {
     List<Library> findAllByNameContaining(String name);
+    long count();
 }

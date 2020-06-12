@@ -17,17 +17,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
-
-    @Override
-    public User findByUserName(String username) {
-        return userRepository.findByUsername(username);
-    }
 //    @Autowired
 //    private BCryptPasswordEncoder passwordEncoder;
 //
@@ -56,5 +53,25 @@ public class UserServiceImpl implements UserService {
 
         return new org.springframework.security.core.userdetails.User
                 (username, user.getPassword(), enabled,accountNonExpired, credentialsNonExpired, accountNonLocked,user.getAuthorities());
+    }
+
+    @Override
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void remove(Long id) {
+        userRepository.deleteById(id);
     }
 }

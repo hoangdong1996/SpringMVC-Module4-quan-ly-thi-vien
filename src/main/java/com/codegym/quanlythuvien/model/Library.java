@@ -26,7 +26,7 @@ public class Library {
     private Set<Book> books = new HashSet<>();
 
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-    private Set<Librarian> librarians = new HashSet<>();
+    private Set<User> users = new HashSet<>();
 
     public Library() {
     }
@@ -44,12 +44,12 @@ public class Library {
         this.books = books;
     }
 
-    public Set<Librarian> getLibrarians() {
-        return librarians;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setLibrarians(Set<Librarian> librarians) {
-        this.librarians = librarians;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     public Long getId() {

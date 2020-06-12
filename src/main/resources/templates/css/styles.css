@@ -1,10 +1,10 @@
 @charset "UTF-8";
-/*!
+/*/
 * Start Bootstrap - SB Admin v6.0.0 (https://startbootstrap.com/templates/sb-admin)
 * Copyright 2013-2020 Start Bootstrap
 * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-sb-admin/blob/master/LICENSE)
 */
-/*!
+/*/
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
@@ -10594,7 +10594,7 @@ body {
     transform: translateX(-225px);
 }
 
-#layoutSidenav #layoutSidenav_content {
+#layoutSidenav .layoutSidenav_content {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -10609,7 +10609,7 @@ body {
     transform: translateX(0);
 }
 
-.sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
+.sb-sidenav-toggled #layoutSidenav .layoutSidenav_content:before {
     content: "";
     display: block;
     position: absolute;
@@ -10628,7 +10628,7 @@ body {
         transform: translateX(0);
     }
 
-    #layoutSidenav #layoutSidenav_content {
+    #layoutSidenav .layoutSidenav_content {
         margin-left: 0;
         transition: margin 0.15s ease-in-out;
     }
@@ -10637,11 +10637,11 @@ body {
         transform: translateX(-225px);
     }
 
-    .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content {
+    .sb-sidenav-toggled #layoutSidenav .layoutSidenav_content {
         margin-left: -225px;
     }
 
-    .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
+    .sb-sidenav-toggled #layoutSidenav .layoutSidenav_content:before {
         display: none;
     }
 }
@@ -10664,7 +10664,7 @@ body {
     overflow-y: auto;
 }
 
-.sb-nav-fixed #layoutSidenav #layoutSidenav_content {
+.sb-nav-fixed #layoutSidenav .layoutSidenav_content {
     padding-left: 225px;
     top: 56px;
 }

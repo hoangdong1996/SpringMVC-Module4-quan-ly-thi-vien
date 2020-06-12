@@ -41,4 +41,9 @@ public class LibraryServiceImpl implements LibraryService {
         return libraryRepository.findAllByNameContaining(name);
     }
 
+    @Override
+    public long countLibrary() {
+        return libraryRepository.count();
+    }
+
 }

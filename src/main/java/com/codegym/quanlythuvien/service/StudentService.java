@@ -7,4 +7,5 @@ import java.util.List;
 
 @Service
 public interface StudentService extends GeneralService<Student> {
+    long countStudent();
 }

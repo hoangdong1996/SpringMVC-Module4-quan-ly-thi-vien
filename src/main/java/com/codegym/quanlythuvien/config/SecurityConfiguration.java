@@ -33,24 +33,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // Và sét đặt PasswordEncoder.
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
                 .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/user/**").hasAnyAuthority("ROLE_ADMIN" ,"ROLE_USER")
+                .antMatchers("/user/**","/","home").hasAnyAuthority("ROLE_ADMIN" ,"ROLE_USER")
                 .and()
                 .exceptionHandling().accessDeniedPage("/403");
         // Cấu hình cho Login Form.
-        http.authorizeRequests().and().formLogin()//
-                .loginProcessingUrl("/j_spring_security_login")//
+        http.authorizeRequests().and().formLogin()
+                .loginProcessingUrl("/j_spring_security_login")
                 .loginPage("/login")//
-                .defaultSuccessUrl("/user")//
-                .failureUrl("/login?message=error")//
-                .usernameParameter("username")//
+                .defaultSuccessUrl("/home")
+                .failureUrl("/login?message=error")
+                .usernameParameter("username")
                 .passwordParameter("password")
                 // Cấu hình cho Logout Page.
                 .and().logout().logoutUrl("/j_spring_security_logout").logoutSuccessUrl("/login?message=logout");
     }
-
 }

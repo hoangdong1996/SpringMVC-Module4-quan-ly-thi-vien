@@ -4,15 +4,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
-public class User {
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
+    private String name;
     private String username;
     private String password;
     private Boolean enabled;
@@ -32,6 +34,11 @@ public class User {
         this.usersRoleses = usersRoleses;
     }
 
+
+    @ManyToOne
+    @JoinColumn(name = "library_id")
+    private Library library;
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -41,6 +48,14 @@ public class User {
 
     public void setId(final Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Column(name = "username", unique = true, length = 45)
@@ -68,6 +83,14 @@ public class User {
 
     public void setEnabled(final Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
     }
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
